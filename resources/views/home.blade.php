@@ -22,8 +22,8 @@
                 <div class="card-header">
                     Send Text Blast
                     <div class="float-right">
-                        <span class="badge badge-primary">SMS Server is {{$server}}</span>
-                        <span class="badge badge-primary">{{$api}} message/s left</span>
+                    <span class="badge badge-{{ $server === "ONLINE" ? "success" : "danger" }}">SMS Server is {{$server}}</span>
+                        <span class="badge badge-{{ intval($api) > 0 ? "primary" : "danger" }}">{{$api}} message/s left</span>
                     </div>
                 </div>
                 <div class="card-body">
