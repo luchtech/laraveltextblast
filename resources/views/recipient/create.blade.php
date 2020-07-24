@@ -74,6 +74,7 @@
                                 <select class="custom-select " size id="district_id" name="district_id" required>
                                     <option value="">Choose your district</option>
                                     @foreach ($districts as $district)
+                                    <option value='{{$district->id}}'>{{$district->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('message')

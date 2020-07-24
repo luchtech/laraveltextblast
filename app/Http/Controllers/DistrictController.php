@@ -96,7 +96,6 @@ class DistrictController extends Controller
                 'content' => http_build_query($itexmo),
             ),
         );
-        dd($param);
         $context  = stream_context_create($param);
         $result = file_get_contents($url, false, $context);
         if ($result == "") {
