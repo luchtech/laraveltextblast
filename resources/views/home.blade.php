@@ -19,21 +19,30 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header">Send Text Blast</div>
+                <div class="card-header">
+                    Send Text Blast
+                    <div class="float-right">
+                        <span class="badge badge-primary">SMS Server is {{$server}}</span>
+                        <span class="badge badge-primary">{{$api}} message/s left</span>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ url('/custom') }}">
                         @csrf
                         <div class="form-group">
-                            <select class="custom-select" multiple size id="recipients" name="recipients[]" required>
-                            @if (count($recipients) > 0)
-                            <option value="">Choose one or more recipients</option>
-                            @else
-                            <option value="">You have no registered recipients</option>
-                            @endif
-                            @foreach ($recipients as $recipient)
-                            <option value='{{$recipient->phone}}'>{{$recipient->phone}} ({{$recipient->firstname}} {{$recipient->middlename}} {{$recipient->lastname}})</option>
-                            @endforeach
-                            </select>
+                            <select class="custom-select" multiple size id="districts" name="districts[]" required>
+                                dd($districts);
+                                @if (count($districts) > 0)
+                                <option value="">Choose one or more districts</option>
+                                @else
+                                <option value="">There are no districts registered</option>
+                                @endif
+                                @foreach ($districts as $district)
+                                @if ($district->recipients->count() > 0)
+                                <option value='{{$district->id}}'>{{$district->name}} ({{$district->recipients->count()}})</option>
+                                @endif
+                                @endforeach
+                                </select>
                             @error('message')
                             <div class="invalid-feedback">
                                 <strong>{{ $message }}</strong>

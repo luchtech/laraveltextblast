@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-            
         <div class="col-md-8">
             @if (session('success'))
             <div class="alert alert-success">
@@ -19,10 +18,10 @@
                 </ul>
             </div>
             @endif
-            <div class="card">
-                <div class="card-header">Add Recipient</div>
+            <div class="card bg-light">
+                <div class="card-header">Subscription</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('addrecipient') }}">
+                    <form method="POST" action="{{ route('subscribe.store') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -68,6 +67,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="district_id" class="col-md-4 col-form-label text-md-right">{{ __('District') }}</label>
+                            <div class="col-md-6">
+                                <select class="custom-select " size id="district_id" name="district_id" required>
+                                    <option value="">Choose your district</option>
+                                    @foreach ($districts as $district)
+                                    <option value='{{$district->id}}'>{{$district->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('message')
+                                <div class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                             <div class="col-md-6">
@@ -84,7 +100,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Subscribe') }}
                                 </button>
                             </div>
                         </div>

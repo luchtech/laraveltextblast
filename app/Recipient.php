@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipient extends Model
 {
-    
     protected $fillable = [
-        'firstname', 'middlename', 'lastname', 'phone'
+        'district_id', 'firstname', 'middlename', 'lastname', 'phone'
     ];
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
 }

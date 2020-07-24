@@ -19,10 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'RecipientController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('recipient', 'RecipientController')->middleware('auth')->only(['index', 'create']);
-Route::post('/custom', 'RecipientController@sendCustomMessage');
-Route::get('/subscribe', function(){
-    return view('subscribe');
-})->name('subscribe')->middleware('guest');
-Route::post('/addsubscriber', 'RecipientController@store')->name('addrecipient');
+Route::post('/custom', 'DistrictController@sendCustomMessage');
+Route::get('/subscribe', 'RecipientController@subscribe')->name('subscribe')->middleware('guest');
+Route::post('/subscribe/store', 'RecipientController@store')->name('subscribe.store');

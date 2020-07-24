@@ -19,11 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-repeat: no-repeat; background-size: cover;background-image: url('{{ asset('images/waves.jpg') }}');">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-info shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand btn btn-info" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,10 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     @guest
-                    <a class="nav-link" href="{{ route('subscribe') }}">Subscribe <span class="sr-only">(current)</span></a>
+                    <a class="nav-link btn btn-primary font-weight-bold text-white" href="{{ route('subscribe') }}">Get SMS Alerts! <span class="sr-only">(current)</span></a>
                     @else
-                    <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="{{ route('recipient.create') }}">Add Recipient <span class="sr-only">(current)</span></a>
+                    <a class="nav-link btn btn-info font-weight-bold text-white" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link btn btn-info font-weight-bold text-white" href="{{ route('recipient.create') }}">Add Recipient <span class="sr-only">(current)</span></a>
                     @endguest
                     </ul>
 
@@ -46,16 +46,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link font-weight-bold text-white btn btn-info" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link font-weight-bold text-white btn btn-info" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold text-white btn btn-info" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }} <span class="caret"></span>
                                 </a>
 
@@ -65,7 +65,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

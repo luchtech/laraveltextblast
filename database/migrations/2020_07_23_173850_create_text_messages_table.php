@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipientsTable extends Migration
+class CreateTextMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRecipientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipients', function (Blueprint $table) {
+        Schema::create('text_messages', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('district_id');
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
-            $table->string('phone')->unique();
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateRecipientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipients');
+        Schema::dropIfExists('text_messages');
     }
 }
